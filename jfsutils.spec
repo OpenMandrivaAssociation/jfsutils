@@ -10,8 +10,8 @@ Url:		http://jfs.sourceforge.net/
 Source0:	http://www10.software.ibm.com/developer/opensource/jfs/project/pub/%{name}-%{version}.tar.bz2
 License:	GPL
 Group:		System/Kernel and hardware
-Obsoletes:	jfsprogs
-Provides:	jfsprogs
+Obsoletes:	jfsprogs < %version-%release
+Provides:	jfsprogs = %version-%release
 BuildRequires:	e2fsprogs-devel
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
