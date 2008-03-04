@@ -1,6 +1,6 @@
 %define	name	jfsutils
 %define	version	1.1.12
-%define	release	%manbo_mkrel 2
+%define	release	%manbo_mkrel 3
 
 Summary:	IBM JFS utility programs
 Name:		%{name}
@@ -17,15 +17,15 @@ BuildRequires:	e2fsprogs-devel
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
-IBM's journaled file system technology, currently used in IBM
-enterprise servers, is designed for high-throughput
-server environments, key to running intranet and other
-high-performance e-business file servers. IBM is
-contributing this technology to the Linux open source
-community with the hope that some or all of it will be
-useful in bringing the best of journaling capabilities to
-the Linux operating system.
-
+The jfsutils package contains a number of utilities for creating,
+checking, modifying, and correcting any inconsistencies in JFS
+filesystems.  The following utilities are available: fsck.jfs - initiate
+replay of the JFS transaction log, and check and repair a JFS formatted
+device; logdump - dump a JFS formatted device's journal log; logredo -
+"replay" a JFS formatted device's journal log;  mkfs.jfs - create a JFS
+formatted partition; xchkdmp - dump the contents of a JFS fsck log file
+created with xchklog; xchklog - extract a log from the JFS fsck workspace
+into a file;  xpeek - shell-type JFS file system editor.
 %prep
 %setup -q 
 %patch1 -p1
