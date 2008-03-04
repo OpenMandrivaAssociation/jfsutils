@@ -1,6 +1,6 @@
 %define	name	jfsutils
 %define	version	1.1.12
-%define	release	%manbo_mkrel 1
+%define	release	%manbo_mkrel 2
 
 Summary:	IBM JFS utility programs
 Name:		%{name}
@@ -8,6 +8,7 @@ Version:	%{version}
 Release:	%{release}
 Url:		http://jfs.sourceforge.net/
 Source0:	http://www10.software.ibm.com/developer/opensource/jfs/project/pub/%{name}-%{version}.tar.bz2
+Patch1:		jfsutils-1.1.12-uuid.patch
 License:	GPL
 Group:		System/Kernel and hardware
 Obsoletes:	jfsprogs < %version-%release
@@ -27,6 +28,7 @@ the Linux operating system.
 
 %prep
 %setup -q 
+%patch1 -p1
 
 %build
 %configure2_5x	--sbindir=/sbin
