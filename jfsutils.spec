@@ -1,6 +1,6 @@
 %define	name	jfsutils
 %define	version	1.1.12
-%define	release	%manbo_mkrel 3
+%define	release	%manbo_mkrel 4
 
 Summary:	IBM JFS utility programs
 Name:		%{name}
