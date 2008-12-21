@@ -1,16 +1,13 @@
-%define	name	jfsutils
-%define	version	1.1.12
-%define	release	%manbo_mkrel 4
-
 Summary:	IBM JFS utility programs
-Name:		%{name}
-Version:	%{version}
-Release:	%{release}
-Url:		http://jfs.sourceforge.net/
-Source0:	http://www10.software.ibm.com/developer/opensource/jfs/project/pub/%{name}-%{version}.tar.bz2
-Patch1:		jfsutils-1.1.12-uuid.patch
-License:	GPL
+Name:		jfsutils
+Version:	1.1.13
+Release:	%manbo_mkrel 1
+License:	GPLv3
 Group:		System/Kernel and hardware
+URL:		http://jfs.sourceforge.net/
+Source0:	http://www10.software.ibm.com/developer/opensource/jfs/project/pub/%{name}-%{version}.tar.gz
+Patch0:		jfsutils-1.1.12-uuid.patch
+Patch1:		jfsutils-1.1.13-format_not_a_string_literal_and_no_format_arguments.diff
 Obsoletes:	jfsprogs < %version-%release
 Provides:	jfsprogs = %version-%release
 BuildRequires:	e2fsprogs-devel
@@ -26,9 +23,12 @@ device; logdump - dump a JFS formatted device's journal log; logredo -
 formatted partition; xchkdmp - dump the contents of a JFS fsck log file
 created with xchklog; xchklog - extract a log from the JFS fsck workspace
 into a file;  xpeek - shell-type JFS file system editor.
+
 %prep
+
 %setup -q 
-%patch1 -p1
+%patch0 -p1 -b .uuid
+%patch1 -p1 -b .format_not_a_string_literal_and_no_format_arguments
 
 %build
 %configure2_5x	--sbindir=/sbin
@@ -37,7 +37,7 @@ into a file;  xpeek - shell-type JFS file system editor.
 %install
 rm -rf %{buildroot}
 
-%{makeinstall_std}
+%makeinstall_std
 
 %clean
 rm -rf %{buildroot}
