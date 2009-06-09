@@ -1,7 +1,7 @@
 Summary:	IBM JFS utility programs
 Name:		jfsutils
 Version:	1.1.13
-Release:	%manbo_mkrel 1
+Release:	%manbo_mkrel 2
 License:	GPLv3
 Group:		System/Kernel and hardware
 URL:		http://jfs.sourceforge.net/
@@ -10,7 +10,7 @@ Patch0:		jfsutils-1.1.12-uuid.patch
 Patch1:		jfsutils-1.1.13-format_not_a_string_literal_and_no_format_arguments.diff
 Obsoletes:	jfsprogs < %version-%release
 Provides:	jfsprogs = %version-%release
-BuildRequires:	e2fsprogs-devel
+BuildRequires:	libblkid-devel
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
