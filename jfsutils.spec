@@ -1,7 +1,7 @@
 Summary:	IBM JFS utility programs
 Name:		jfsutils
 Version:	1.1.13
-Release:	%manbo_mkrel 3
+Release:	%manbo_mkrel 4
 License:	GPLv3
 Group:		System/Kernel and hardware
 URL:		http://jfs.sourceforge.net/
