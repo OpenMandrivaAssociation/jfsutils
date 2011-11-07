@@ -1,15 +1,15 @@
 Summary:	IBM JFS utility programs
 Name:		jfsutils
-Version:	1.1.13
-Release:	%manbo_mkrel 4
+Version:	1.1.15
+Release:	%manbo_mkrel 1
 License:	GPLv3
 Group:		System/Kernel and hardware
 URL:		http://jfs.sourceforge.net/
 Source0:	http://www10.software.ibm.com/developer/opensource/jfs/project/pub/%{name}-%{version}.tar.gz
 Patch0:		jfsutils-1.1.12-uuid.patch
-Patch1:		jfsutils-1.1.13-format_not_a_string_literal_and_no_format_arguments.diff
-Obsoletes:	jfsprogs < %version-%release
-Provides:	jfsprogs = %version-%release
+Patch2:		jfsutils-1.1.15-string-literal.diff
+Obsoletes:	jfsprogs < %{version}-%{release}
+Provides:	jfsprogs = %{version}-%{release}
 BuildRequires:	libblkid-devel
 BuildRequires:	libuuid-devel
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
@@ -27,13 +27,13 @@ into a file;  xpeek - shell-type JFS file system editor.
 
 %prep
 
-%setup -q 
+%setup -q
 %patch0 -p1 -b .uuid
-%patch1 -p1 -b .format_not_a_string_literal_and_no_format_arguments
+%patch2 -p1 -b .literal
 
 %build
 %configure2_5x	--sbindir=/sbin
-%make 
+%make
 
 %install
 rm -rf %{buildroot}
