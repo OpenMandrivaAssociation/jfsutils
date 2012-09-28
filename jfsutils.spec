@@ -1,18 +1,16 @@
 Summary:	IBM JFS utility programs
 Name:		jfsutils
 Version:	1.1.15
-Release:	%manbo_mkrel 1
+Release:	2
 License:	GPLv3
 Group:		System/Kernel and hardware
 URL:		http://jfs.sourceforge.net/
 Source0:	http://www10.software.ibm.com/developer/opensource/jfs/project/pub/%{name}-%{version}.tar.gz
 Patch0:		jfsutils-1.1.12-uuid.patch
 Patch2:		jfsutils-1.1.15-string-literal.diff
-Obsoletes:	jfsprogs < %{version}-%{release}
-Provides:	jfsprogs = %{version}-%{release}
-BuildRequires:	libblkid-devel
-BuildRequires:	libuuid-devel
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
+%rename		jfsprogs
+BuildRequires:	pkgconfig(blkid)
+BuildRequires:	pkgconfig(uuid)
 
 %description
 The jfsutils package contains a number of utilities for creating,
@@ -26,24 +24,17 @@ created with xchklog; xchklog - extract a log from the JFS fsck workspace
 into a file;  xpeek - shell-type JFS file system editor.
 
 %prep
-
 %setup -q
-%patch0 -p1 -b .uuid
-%patch2 -p1 -b .literal
+%patch0 -p1 -b .uuid~
+%patch2 -p1 -b .literal~
 
 %build
 %configure2_5x	--sbindir=/sbin
 %make
 
 %install
-rm -rf %{buildroot}
-
 %makeinstall_std
 
-%clean
-rm -rf %{buildroot}
-
 %files
-%defattr(-,root,root)
 /sbin/*
 %{_mandir}/*/*
