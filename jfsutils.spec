@@ -20,13 +20,16 @@ BuildRequires:	uClibc-devel >= 0.9.33.2-9
 %description
 The jfsutils package contains a number of utilities for creating,
 checking, modifying, and correcting any inconsistencies in JFS
-filesystems.  The following utilities are available: fsck.jfs - initiate
-replay of the JFS transaction log, and check and repair a JFS formatted
-device; logdump - dump a JFS formatted device's journal log; logredo -
-"replay" a JFS formatted device's journal log; mkfs.jfs - create a JFS
-formatted partition; xchkdmp - dump the contents of a JFS fsck log file
-created with xchklog; xchklog - extract a log from the JFS fsck workspace
-into a file;  xpeek - shell-type JFS file system editor.
+filesystems.
+The following utilities are available:
+* fsck.jfs - initiate replay of the JFS transaction log, and check and
+  repair a JFS formatted device
+* logdump  - dump a JFS formatted device's journal log
+* logredo  - "replay" a JFS formatted device's journal log
+* mkfs.jfs - create a JFS formatted partition
+* xchkdmp  - dump the contents of a JFS fsck log file created with xchklog
+* xchklog  - extract a log from the JFS fsck workspace into a file
+* xpeek    - shell-type JFS file system editor
 
 %package -n	uclibc-%{name}
 Summary:	IBM JFS utility programs (uClibc build)
@@ -35,13 +38,16 @@ Group:		System/Kernel and hardware
 %description -n	uclibc-%{name}
 The jfsutils package contains a number of utilities for creating,
 checking, modifying, and correcting any inconsistencies in JFS
-filesystems.  The following utilities are available: fsck.jfs - initiate
-replay of the JFS transaction log, and check and repair a JFS formatted
-device; logdump - dump a JFS formatted device's journal log; logredo -
-"replay" a JFS formatted device's journal log; mkfs.jfs - create a JFS
-formatted partition; xchkdmp - dump the contents of a JFS fsck log file
-created with xchklog; xchklog - extract a log from the JFS fsck workspace
-into a file;  xpeek - shell-type JFS file system editor.
+filesystems.
+The following utilities are available:
+* fsck.jfs - initiate replay of the JFS transaction log, and check and
+  repair a JFS formatted device
+* logdump  - dump a JFS formatted device's journal log
+* logredo  - "replay" a JFS formatted device's journal log
+* mkfs.jfs - create a JFS formatted partition
+* xchkdmp  - dump the contents of a JFS fsck log file created with xchklog
+* xchklog  - extract a log from the JFS fsck workspace into a file
+* xpeek    - shell-type JFS file system editor
 
 %prep
 %setup -q
