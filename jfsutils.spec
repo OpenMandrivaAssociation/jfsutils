@@ -13,7 +13,7 @@ Patch2:		jfsutils-1.1.15-string-literal.diff
 %rename		jfsprogs
 BuildRequires:	pkgconfig(blkid)
 BuildRequires:	pkgconfig(uuid)
-%if %{with buildrequires}
+%if %{with uclibc}
 BuildRequires:	uClibc-devel >= 0.9.33.2-16
 %endif
 
