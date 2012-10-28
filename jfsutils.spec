@@ -14,7 +14,7 @@ Patch2:		jfsutils-1.1.15-string-literal.diff
 BuildRequires:	pkgconfig(blkid)
 BuildRequires:	pkgconfig(uuid)
 %if %{with buildrequires}
-BuildRequires:	uClibc-devel >= 0.9.33.2-9
+BuildRequires:	uClibc-devel >= 0.9.33.2-16
 %endif
 
 %description
@@ -59,8 +59,7 @@ CONFIGURE_TOP=$PWD
 %if %{with uclibc}
 mkdir -p uclibc
 pushd uclibc
-%configure2_5x	CC=%{uclibc_cc} \
-		CFLAGS="%{uclibc_cflags}" \
+%uclibc_configure \
 		--sbindir=%{uclibc_root}/sbin
 %make
 popd
