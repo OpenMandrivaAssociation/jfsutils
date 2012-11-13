@@ -1,0 +1,47 @@
+diff -urNp jfsutils-1.1.12.orig/fsck/Makefile.am jfsutils-1.1.12/fsck/Makefile.am
+--- jfsutils-1.1.12.orig/fsck/Makefile.am	2005-11-22 21:43:54.000000000 +0100
++++ jfsutils-1.1.12/fsck/Makefile.am	2008-03-03 16:21:58.495981389 +0100
+@@ -1,6 +1,6 @@
+ 
+ INCLUDES = -I$(top_srcdir)/include -I$(top_srcdir)/libfs
+-LDADD = ../libfs/libfs.a -luuid
++LDADD = ../libfs/libfs.a -luuid -lblkid
+ 
+ sbin_PROGRAMS = jfs_fsck
+ man_MANS = jfs_fsck.8
+diff -urNp jfsutils-1.1.12.orig/fsck/Makefile.in jfsutils-1.1.12/fsck/Makefile.in
+--- jfsutils-1.1.12.orig/fsck/Makefile.in	2007-08-24 22:25:46.000000000 +0200
++++ jfsutils-1.1.12/fsck/Makefile.in	2008-03-03 16:21:50.765050221 +0100
+@@ -157,7 +157,7 @@ target_alias = @target_alias@
+ top_builddir = @top_builddir@
+ top_srcdir = @top_srcdir@
+ INCLUDES = -I$(top_srcdir)/include -I$(top_srcdir)/libfs
+-LDADD = ../libfs/libfs.a -luuid
++LDADD = ../libfs/libfs.a -luuid -lblkid
+ man_MANS = jfs_fsck.8
+ EXTRA_DIST = $(man_MANS)
+ jfs_fsck_SOURCES = fsckbmap.c fsckconn.c fsckdire.c fsckdtre.c fsckea.c \
+diff -urNp jfsutils-1.1.12.orig/fsck/xchkdsk.c jfsutils-1.1.12/fsck/xchkdsk.c
+--- jfsutils-1.1.12.orig/fsck/xchkdsk.c	2007-08-23 06:01:40.000000000 +0200
++++ jfsutils-1.1.12/fsck/xchkdsk.c	2008-03-03 16:44:28.499981978 +0100
+@@ -24,6 +24,7 @@
+ #include <time.h>
+ #include <unistd.h>
+ #include <sys/stat.h>
++#include <blkid/blkid.h>
+ /* defines and includes common among the jfs_fsck modules */
+ #include "xfsckint.h"
+ #include "xchkdsk.h"
+@@ -1807,7 +1808,11 @@ void parse_parms(int argc, char **argv)
+ 		fsck_usage();
+ 	}
+ 
+-	device_name = argv[optind];
++	device_name = blkid_get_devname(NULL, argv[optind], 0);
++	if (!device_name) {
++		printf("\nError: Unable to resolve %s\n", argv[optind]);
++		fsck_usage();
++	}
+ 
+ 	file_p = fopen(device_name, "r");
+ 	if (file_p) {
