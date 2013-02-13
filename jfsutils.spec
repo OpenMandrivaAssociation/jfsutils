@@ -10,6 +10,7 @@ URL:		http://jfs.sourceforge.net/
 Source0:	http://www10.software.ibm.com/developer/opensource/jfs/project/pub/%{name}-%{version}.tar.gz
 Patch0:		jfsutils-1.1.12-uuid.patch
 Patch2:		jfsutils-1.1.15-string-literal.diff
+Patch3:		jfsutils-1.1.15-add-stdint-for-c99-types.patch
 %rename		jfsprogs
 BuildRequires:	pkgconfig(blkid)
 BuildRequires:	pkgconfig(uuid)
@@ -53,6 +54,7 @@ The following utilities are available:
 %setup -q
 %patch0 -p1 -b .uuid~
 %patch2 -p1 -b .literal~
+%patch3 -p1 -b .stdint~
 
 %build
 CONFIGURE_TOP="$PWD"
