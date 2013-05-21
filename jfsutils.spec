@@ -6,17 +6,18 @@ Version:	1.1.15
 Release:	3
 License:	GPLv3
 Group:		System/Kernel and hardware
-URL:		http://jfs.sourceforge.net/
+Url:		http://jfs.sourceforge.net/
 Source0:	http://www10.software.ibm.com/developer/opensource/jfs/project/pub/%{name}-%{version}.tar.gz
 Patch0:		jfsutils-1.1.12-uuid.patch
 Patch2:		jfsutils-1.1.15-string-literal.diff
 Patch3:		jfsutils-1.1.15-add-stdint-for-c99-types.patch
-%rename		jfsprogs
+
 BuildRequires:	pkgconfig(blkid)
 BuildRequires:	pkgconfig(uuid)
 %if %{with uclibc}
 BuildRequires:	uClibc-devel >= 0.9.33.2-16
 %endif
+%rename		jfsprogs
 
 %description
 The jfsutils package contains a number of utilities for creating,
@@ -52,9 +53,7 @@ The following utilities are available:
 
 %prep
 %setup -q
-%patch0 -p1 -b .uuid~
-%patch2 -p1 -b .literal~
-%patch3 -p1 -b .stdint~
+%apply_patches
 
 %build
 CONFIGURE_TOP="$PWD"
@@ -62,14 +61,15 @@ CONFIGURE_TOP="$PWD"
 mkdir -p uclibc
 pushd uclibc
 %uclibc_configure \
-		--sbindir=%{uclibc_root}/sbin
+	--sbindir=%{uclibc_root}/sbin
 %make
 popd
 %endif
 
 mkdir -p system
 pushd system
-%configure2_5x	--sbindir=/sbin
+%configure2_5x \
+	--sbindir=/sbin
 %make
 popd
 
@@ -88,3 +88,4 @@ popd
 %files -n uclibc-%{name}
 %{uclibc_root}/sbin/*
 %endif
+
