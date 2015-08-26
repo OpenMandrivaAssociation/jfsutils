@@ -1,9 +1,9 @@
-%bcond_without	uclibc
+%bcond_with	uclibc
 
 Summary:	IBM JFS utility programs
 Name:		jfsutils
 Version:	1.1.15
-Release:	11
+Release:	12
 License:	GPLv3
 Group:		System/Kernel and hardware
 Url:		http://jfs.sourceforge.net/
