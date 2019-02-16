@@ -1,0 +1,12 @@
+diff -up jfsutils-1.1.15/libfs/devices.c.omv~ jfsutils-1.1.15/libfs/devices.c
+--- jfsutils-1.1.15/libfs/devices.c.omv~	2019-02-16 03:04:23.678255212 +0100
++++ jfsutils-1.1.15/libfs/devices.c	2019-02-16 03:04:28.610317874 +0100
+@@ -466,7 +466,7 @@ int ujfs_flush_dev(FILE *fp)
+ 		return errno;
+ #ifdef BLKFLSBUF
+ 	fstat(fd, &buf);
+-	if (major(buf.st_rdev) != RAMDISK_MAJOR)
++	if (gnu_dev_major(buf.st_rdev) != RAMDISK_MAJOR)
+ 		return ioctl(fileno(fp), BLKFLSBUF, 0);
+ #endif
+ 	return 0;
