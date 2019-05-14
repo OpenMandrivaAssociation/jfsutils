@@ -30,17 +30,15 @@ The following utilities are available:
 * xpeek    - shell-type JFS file system editor
 
 %prep
-%setup -q
-%apply_patches
+%autosetup -p1
 
 %build
 %configure \
 	--sbindir=/sbin
-%make
-
+%make_build
 
 %install
-%makeinstall_std
+%make_install
 
 %files
 /sbin/*
