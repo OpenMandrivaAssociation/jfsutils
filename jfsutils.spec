@@ -1,3 +1,4 @@
+%global optflags %optflags -fcommon
 Summary:	IBM JFS utility programs
 Name:		jfsutils
 Version:	1.1.15
