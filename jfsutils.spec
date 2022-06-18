@@ -3,7 +3,7 @@
 Summary:	IBM JFS utility programs
 Name:		jfsutils
 Version:	1.1.15
-Release:	18
+Release:	19
 License:	GPLv3
 Group:		System/Kernel and hardware
 Url:		http://jfs.sourceforge.net/
@@ -35,13 +35,12 @@ The following utilities are available:
 %autosetup -p1
 
 %build
-%configure \
-	--sbindir=/sbin
+%configure
 %make_build
 
 %install
 %make_install
 
 %files
-/sbin/*
+%{_sbindir}/*
 %doc %{_mandir}/*/*
