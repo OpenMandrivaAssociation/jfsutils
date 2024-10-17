@@ -6,7 +6,7 @@ Version:	1.1.15
 Release:	20
 License:	GPLv3
 Group:		System/Kernel and hardware
-Url:		http://jfs.sourceforge.net/
+Url:		https://jfs.sourceforge.net/
 Source0:	http://www10.software.ibm.com/developer/opensource/jfs/project/pub/%{name}-%{version}.tar.gz
 Patch0:		jfsutils-1.1.12-uuid.patch
 Patch1:		jfsutils-glibc-2.28.patch
