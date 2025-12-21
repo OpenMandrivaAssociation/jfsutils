@@ -13,6 +13,11 @@ Patch1:		jfsutils-glibc-2.28.patch
 Patch2:		jfsutils-1.1.15-string-literal.diff
 Patch3:		jfsutils-1.1.15-add-stdint-for-c99-types.patch
 
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	pkgconfig(blkid)
 BuildRequires:	pkgconfig(uuid)
 %rename		jfsprogs
